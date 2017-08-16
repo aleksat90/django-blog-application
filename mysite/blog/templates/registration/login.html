@@ -1,0 +1,24 @@
+{%extends 'blog/base.html' %}
+
+
+{%block content %}
+  <div class="jumbotron">
+    <h1>Please Login</h1>
+    <h3>(Must be SuperUser, please check with the site admin)</h3>
+
+    {%if form.errors%}
+      <p>You username and password didn't match! Please try again.</p>
+    {%endif%}
+
+    <!-- #probaj da stavis "{% url 'blog:login'%}". Nije stavljeno
+    #moze da bude bez toga jer nema nista u templates na nivou projekta -->
+    <form action="{% url 'login'%}" method="POST">
+      {%csrf_token%}
+        {{form.as_p}}
+          <input type="submit" class="btn btn-primary" value="Login">
+          <!-- Next ce biti ucitano iz url(r'accounts/login/$',views.login,name='login'),
+          sto ce omoguciti da osoba pogleda sta moze dalje da uradi -->
+          <input type="hidden" name="next" value="{{next}}">
+    </form>
+  </div>
+{%endblock%}
