@@ -10,8 +10,6 @@
       <p>You username and password didn't match! Please try again.</p>
     {%endif%}
 
-    <!-- #probaj da stavis "{% url 'blog:login'%}". Nije stavljeno
-    #moze da bude bez toga jer nema nista u templates na nivou projekta -->
     <form action="{% url 'login'%}" method="POST">
       {%csrf_token%}
         {{form.as_p}}
